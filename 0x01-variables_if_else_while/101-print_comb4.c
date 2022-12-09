@@ -28,7 +28,7 @@ int main(void)
 				if ((i == 7) && (j == 8) && (k == 9))
 				{
 					putchar('\n');
-					break; /* Function breaker */
+					break; /* Loop breaker */
 				}
 				putchar(',');
 				putchar(' ');
