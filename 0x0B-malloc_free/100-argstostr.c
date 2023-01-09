@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include "_strlen.c"
 #include "main.h"
-#include <stdio.h>
 
 /**
  * argstostr - Concats the arguments passed to the function and adds \\n
@@ -19,7 +18,7 @@ char *argstostr(int ac, char **av)
 	int k;
 	int len;
 
-	if ((ac == 0) | (*av == NULL))
+	if ((ac == 0))
 		return (NULL);
 
 	len = 0;
