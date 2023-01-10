@@ -188,7 +188,7 @@ char **strtow(char *str)
 
 	n_words = get_n_words(str);
 	len = _strlen(tr_str);
-	if ((n_words == 0) | (len == 0))
+	if ((n_words == 0) | (len == 0) | (tr_str == NULL))
 		return (NULL);
 	arr = malloc(sizeof(char *) * (n_words + 1));
 	if (arr == NULL)
