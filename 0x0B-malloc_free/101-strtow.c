@@ -139,7 +139,7 @@ char *trim_inner_spaces(char *str)
 	n_words = get_n_words(str);
 	n_chars = get_n_chars(str);
 	len = _strlen(new_str);
-	if ((n_words == 0) | (n_chars == 0))
+	if ((n_words == 0) | (n_chars == 0) | (len == 0))
 		return (NULL);
 
 	arr = malloc(sizeof(char) * (n_chars + 1));
@@ -188,7 +188,8 @@ char **strtow(char *str)
 
 	n_words = get_n_words(str);
 	len = _strlen(tr_str);
-
+	if ((n_words == 0) | (len == 0))
+		return (NULL);
 	arr = malloc(sizeof(char *) * (n_words + 1));
 	if (arr == NULL)
 		return (NULL);
