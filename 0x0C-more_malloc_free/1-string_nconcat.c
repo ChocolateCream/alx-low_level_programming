@@ -24,7 +24,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		len = 0;
 	}
 
-	else if (strlen(s2) < n)
+	else if (strlen(s2) <= n)
 	{
 		s = s2;
 		len = strlen(s2);
@@ -45,6 +45,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (j = 0; j < len; j++)
 		arr[i + j] = s[j];
+
+	arr[i + j] = '\0';
 
 	return (arr);
 }
