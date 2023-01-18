@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 /**
  * print_name - prints a name
  * @name: a string to the name of the person
@@ -8,5 +10,6 @@
 
 void print_name(char *name, void (*f)(char *))
 {
-	f(name);
+	if (f != NULL)
+		f(name);
 }
