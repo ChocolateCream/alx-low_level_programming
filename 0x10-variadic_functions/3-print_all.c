@@ -24,26 +24,26 @@ void print_all(const char * const format, ...)
 		{
 			case 'c':
 				printf("%c", va_arg(args, int));
-				hit = 1;
 				break;
 			case 'i':
 				printf("%d", va_arg(args, int));
-				hit = 1;
 				break;
 			case 'f':
 				printf("%f", va_arg(args, double));
-				hit = 1;
 				break;
 			case 's':
 				txt = va_arg(args, char *);
 				if (txt == NULL)
+				{
 					printf("(nil)");
-				else
-					printf("%s", txt);
-				hit = 1;
+					break;
+				}
+				printf("%s", txt);
 				break;
+			default:
+				hit = 1;
 		}
-		if ((i != len_str - 1) & (hit == 1))
+		if ((i != len_str - 1) & (hit != 1))
 			printf(", ");
 		i++;
 		hit = 0;
