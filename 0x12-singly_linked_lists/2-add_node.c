@@ -28,5 +28,6 @@ list_t *add_node(list_t **head, const char *str)
 	new->next = *head;
 
 	/* Return the pointer to the list */
-	return (new);
+	*head = new;
+	return (*head);
 }
