@@ -13,6 +13,10 @@ size_t print_list(const list_t *h)
 	int count;
 
 	count = 0;
+
+	if (!h)
+		return (count);
+
 	while (h->next)
 	{
 		if (h->str)
