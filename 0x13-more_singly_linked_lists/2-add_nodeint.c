@@ -27,5 +27,5 @@ listint_t *add_nodeint(listint_t **head, const int n)
 
 	/* Update the pointer to the head */
 	*head = node;
-	return(*head);
+	return (*head);
 }
