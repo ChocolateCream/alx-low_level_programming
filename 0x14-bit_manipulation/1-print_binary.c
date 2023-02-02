@@ -10,7 +10,7 @@
 
 void print_binary(unsigned long int n)
 {
-	unsigned long int mask;
+	unsigned long int mask, size_n, i;
 	int print_0s;
 
 	if (n == 0)
@@ -19,9 +19,13 @@ void print_binary(unsigned long int n)
 		return;
 	}
 
-	mask = 2147483648;
-	print_0s = 0;
+	mask = 1;
+	size_n = sizeof(n) * 8;
 
+	for (i = 0; i < size_n - 1; i++)
+		mask *= 2;
+
+	print_0s = 0;
 	while (mask != 0)
 	{
 		if ((mask & n) != 0)
