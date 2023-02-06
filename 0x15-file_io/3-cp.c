@@ -63,9 +63,15 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	while (read(file_desc_read, buffer, buffer_size) > 0)
+	while ((read(file_desc_read, buffer, buffer_size)) > 0)
 	{
-		write(file_desc_write, buffer, buffer_size);
+		n_bytes_write = write(file_desc_write, buffer, buffer_size);
+		if (n_bytes_write < 0)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			close(file_desc_write);
+			exit(99);
+		}
 	}
 
 	if (close(file_desc_read) < 0)
