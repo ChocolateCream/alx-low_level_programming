@@ -50,9 +50,9 @@ int main(int argc, char *argv[])
 	n_bytes_read = read(file_desc_read, buffer, buffer_size);
 	if (n_bytes_read < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		close(file_desc_write);
-		exit(99);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		close(file_desc_read);
+		exit(98);
 	}
 
 	n_bytes_write = write(file_desc_write, buffer, buffer_size);
