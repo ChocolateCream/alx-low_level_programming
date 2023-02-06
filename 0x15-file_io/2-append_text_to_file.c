@@ -21,15 +21,15 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (file_desc < 0)
 		return (-1);
 
+	len_text = 0;
 	if (text_content != NULL)
 	{
-		len_text = 0;
 		while (text_content[len_text] != '\0')
 			len_text++;
 	}
 
 	n_bytes_write = write(file_desc, text_content, len_text);
-	if ((n_bytes_write < 0) || (n_bytes_write != len_text))
+	if (n_bytes_write < 0)
 	{
 		close(file_desc);
 		return (-1);
