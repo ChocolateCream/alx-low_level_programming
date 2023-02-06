@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-	int file_desc_read, file_desc_write, close_code_read, close_code_write;
+	int file_desc_read, file_desc_write;
 	char *buffer;
 	ssize_t n_bytes_read, n_bytes_write;
 
@@ -52,17 +52,15 @@ int main(int argc, char *argv[])
 		write(file_desc_write, buffer, 1024);
 	}
 
-	close_code_read = close(file_desc_read);
-	if (close_code_read < 0)
+	if (close(file_desc_read) < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_desc_read);
 		exit(100);
 	}
 
-	close_code_write = close(file_desc_write);
-	if (close_code_write < 0)
+	if (close(file_desc_write) < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", close_code_write);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_desc_write);
 		exit(100);
 	}
 
