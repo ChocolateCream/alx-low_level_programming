@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 	if (n_bytes_read < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		free(buffer);
 		close(file_desc_read);
 		exit(98);
 	}
@@ -59,6 +60,7 @@ int main(int argc, char *argv[])
 	if (n_bytes_write < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		free(buffer);
 		close(file_desc_write);
 		exit(99);
 	}
@@ -69,6 +71,7 @@ int main(int argc, char *argv[])
 		if (n_bytes_write < 0)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			free(buffer);
 			close(file_desc_write);
 			exit(99);
 		}
@@ -76,15 +79,18 @@ int main(int argc, char *argv[])
 
 	if (close(file_desc_read) < 0)
 	{
+		free(buffer);
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_desc_read);
 		exit(100);
 	}
 
 	if (close(file_desc_write) < 0)
 	{
+		free(buffer);
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_desc_write);
 		exit(100);
 	}
 
+	free(buffer);
 	return (0);
 }
