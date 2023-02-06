@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-	int file_desc_read, file_desc_write;
+	int file_desc_read, file_desc_write, buffer_size;
 	char *buffer;
 	ssize_t n_bytes_read, n_bytes_write;
 
@@ -22,7 +22,8 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buffer = malloc(1024);
+	buffer_size = 1024;
+	buffer = malloc(buffer_size);
 	if (!buffer)
 	{
 		free(buffer);
@@ -31,25 +32,25 @@ int main(int argc, char *argv[])
 	}
 
 	file_desc_read = open(argv[1], O_RDONLY);
-	n_bytes_read = read(file_desc_read, buffer, 1024);
+	n_bytes_read = read(file_desc_read, buffer, buffer_size);
 	if ((file_desc_read < 0) || (n_bytes_read < 0))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 
-	file_desc_write = open(argv[2], O_RDWR | O_CREAT | O_TRUNC,
+	file_desc_write = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC,
 	S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	n_bytes_write = write(file_desc_write, buffer, 1024);
+	n_bytes_write = write(file_desc_write, buffer, buffer_size);
 	if ((file_desc_write < 0) || (n_bytes_write < 0))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 
-	while (read(file_desc_read, buffer, 1024) > 0)
+	while (read(file_desc_read, buffer, buffer_size) > 0)
 	{
-		write(file_desc_write, buffer, 1024);
+		write(file_desc_write, buffer, buffer_size);
 	}
 
 	if (close(file_desc_read) < 0)
