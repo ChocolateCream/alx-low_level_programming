@@ -53,14 +53,14 @@ int main(int argc, char *argv[])
 	}
 
 	close_code_read = close(file_desc_read);
-	if (close_code_read == -1)
+	if (close_code_read < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", close_code_read);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_desc_read);
 		exit(100);
 	}
 
 	close_code_write = close(file_desc_write);
-	if (close_code_write == -1)
+	if (close_code_write < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", close_code_write);
 		exit(100);
