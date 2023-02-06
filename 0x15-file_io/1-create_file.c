@@ -33,7 +33,6 @@ int create_file(const char *filename, char *text_content)
 	len_text = 0;
 	while (text_content[len_text] != '\0')
 		len_text++;
-	len_text++;
 
 	n_bytes_write = write(file_desc, text_content, len_text);
 	if (n_bytes_write < 0)
