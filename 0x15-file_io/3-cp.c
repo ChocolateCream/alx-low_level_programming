@@ -26,9 +26,7 @@ int main(int argc, char *argv[])
 	buffer = malloc(buffer_size);
 	if (!buffer)
 	{
-		free(buffer);
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
+		exit(1);
 	}
 
 	file_desc_read = open(argv[1], O_RDONLY);
@@ -68,14 +66,7 @@ int main(int argc, char *argv[])
 	buffer = malloc(buffer_size);
 	while ((read(file_desc_read, buffer, buffer_size)) > 0)
 	{
-		n_bytes_write = write(file_desc_write, buffer, buffer_size);
-		if (n_bytes_write < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			free(buffer);
-			close(file_desc_write);
-			exit(99);
-		}
+		write(file_desc_write, buffer, buffer_size);
 		buffer = malloc(buffer_size);
 	}
 
