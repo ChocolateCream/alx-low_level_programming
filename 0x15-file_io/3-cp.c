@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
+	buffer = malloc(buffer_size);
 	while ((read(file_desc_read, buffer, buffer_size)) > 0)
 	{
 		n_bytes_write = write(file_desc_write, buffer, buffer_size);
@@ -75,6 +76,7 @@ int main(int argc, char *argv[])
 			close(file_desc_write);
 			exit(99);
 		}
+		buffer = malloc(buffer_size);
 	}
 
 	if (close(file_desc_read) < 0)
